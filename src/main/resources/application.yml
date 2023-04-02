@@ -3,6 +3,8 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+    database: mysql   # 추가 해준 부분
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/stock_example

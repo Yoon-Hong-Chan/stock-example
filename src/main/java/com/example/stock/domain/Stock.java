@@ -1,9 +1,16 @@
 package com.example.stock.domain;
 
-import javax.persistence.*;
+import javax.annotation.processing.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Stock {
+    // id, productId, quantity
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -12,19 +19,7 @@ public class Stock {
 
     private Long quantity;
 
-    @Version
-    private Long version;
-
     public Stock() {
-
-    }
-
-    public void decrease(Long quantity) {
-        if (this.quantity - quantity < 0) {
-            throw new RuntimeException("foo");
-        }
-
-        this.quantity -= quantity;
     }
 
     public Stock(Long productId, Long quantity) {
@@ -34,5 +29,12 @@ public class Stock {
 
     public Long getQuantity() {
         return quantity;
+    }
+
+    public void decrease(Long quantity){
+        if(this.quantity - quantity < 0){
+            throw new RuntimeException("foo");
+        }
+        this.quantity = this.quantity - quantity;
     }
 }
